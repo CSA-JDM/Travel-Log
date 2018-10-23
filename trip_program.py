@@ -1,6 +1,22 @@
 # Jacob Meadows
 # Computer Programming II, 6th Period
 # 01 October 2018
+"""
+    Copyright (C) 2018  Jacob Meadows
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+"""
 import tkinter as tk
 from tkinter import ttk
 
@@ -74,6 +90,10 @@ class App(tk.Frame):
                                       "Month: " + self.widgets["months_spinbox"].get() + ", " +
                                       "Method of Travel: " + self.widgets["travel_combobox"].get() + ", " +
                                       "Description: " + self.widgets["description_text"].get(1.0, "end"))
+            self.travel_log_txt.close()
+            self.travel_log_txt = open("travel_log.txt", "r")
+            self.travel_log_info = self.travel_log_txt.read()
+            print(self.travel_log_info)
             self.travel_log_txt.close()
 
     def clear_command(self):
