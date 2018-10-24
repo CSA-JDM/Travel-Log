@@ -61,7 +61,9 @@ class App(tk.Frame):
         self.widgets["countries_str_var"] = tk.StringVar(value=self.countries.split("\n"))
         self.widgets["countries_listbox"] = tk.Listbox(self, listvariable=self.widgets["countries_str_var"], width=28)
         self.widgets["countries_scrollbar"] = tk.Scrollbar(self, command=self.widgets["countries_listbox"].yview)
-        self.widgets["countries_listbox"].config(yscrollcommand=self.widgets["countries_scrollbar"], exportselection=0)
+        self.widgets["countries_listbox"].config(
+            yscrollcommand=self.widgets["countries_scrollbar"].set, exportselection=0
+        )
         self.widgets["countries_label"].place(x=10 + self.widgets["countries_listbox"]["width"]*2, y=5)
         self.widgets["countries_listbox"].place(x=10, y=30)
         self.widgets["countries_scrollbar"].place(in_=self.widgets["countries_listbox"], x=165, y=-1.5, relheight=1.025)
@@ -85,11 +87,13 @@ class App(tk.Frame):
     def submit_command(self):
         if self.widgets["countries_listbox"].curselection() != () and self.widgets["travel_combobox"].get() != "":
             self.travel_log_txt = open("travel_log.txt", "w")
-            self.travel_log_txt.write(self.travel_log_info +
-                                      "Country: " + self.widgets["countries_listbox"].get(self.widgets["countries_listbox"].curselection()[0]) + ", " +
-                                      "Month: " + self.widgets["months_spinbox"].get() + ", " +
-                                      "Method of Travel: " + self.widgets["travel_combobox"].get() + ", " +
-                                      "Description: " + self.widgets["description_text"].get(1.0, "end"))
+            self.travel_log_txt.write(
+                self.travel_log_info +
+                "Country: " +
+                self.widgets["countries_listbox"].get(self.widgets["countries_listbox"].curselection()[0]) + ", " +
+                "Month: " + self.widgets["months_spinbox"].get() + ", " +
+                "Method of Travel: " + self.widgets["travel_combobox"].get() + ", " +
+                "Description: " + self.widgets["description_text"].get(1.0, "end"))
             self.travel_log_txt.close()
             self.travel_log_txt = open("travel_log.txt", "r")
             self.travel_log_info = self.travel_log_txt.read()
