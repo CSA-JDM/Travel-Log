@@ -25,6 +25,7 @@ class App(tk.Frame):
     def __init__(self, master):
         self.master = master
         self.master.config(width=390, height=400)
+        self.master.minsize(width=390, height=400)
         self.master.title("Travel")
         super().__init__(self.master, width=390, height=400)
         self.place(x=0, y=0)
@@ -83,6 +84,8 @@ class App(tk.Frame):
         self.widgets["submit_button"].place(x=210, y=120)
         self.widgets["clear_button"] = tk.Button(self, text="Clear", command=self.clear_command)
         self.widgets["clear_button"].place(x=210, y=150)
+        self.widgets["grip"] = tk.ttk.Sizegrip(self)
+        self.widgets["grip"].place(x=self.config("width")[-1]-15, y=self.config("height")[-1]-15)
 
     def submit_command(self):
         if self.widgets["countries_listbox"].curselection() != () and self.widgets["travel_combobox"].get() != "":
@@ -108,11 +111,14 @@ class App(tk.Frame):
         self.widget_init()
 
     def about_command(self):
-        self.widgets["about_toplevel"] = tk.Toplevel(self)
+        self.widgets["about_toplevel"] = tk.Toplevel(self, )
         self.widgets["about_toplevel"].title("About")
-        self.widgets["about_message"] = tk.Message(self.widgets["about_toplevel"], width=200,
-                                                   text="A short program that logs inputted data from the user based on"
-                                                        " the survey and any information given in the description.")
+        self.widgets["about_message"] = tk.Message(self.widgets["about_toplevel"], width=300,
+                                                   text="Author: Jacob Meadows\n"
+                                                        "Version: 1.0.1\n"
+                                                        "Description: A short program that logs inputted data from the "
+                                                        "user based on the survey and any information given in the "
+                                                        "description.")
         self.widgets["about_message"].pack()
 
 
