@@ -31,6 +31,7 @@ class App(tk.Frame):
         self.master.title("Travel")
         super().__init__(self.master, width=390, height=400)
         self.place(relx=.5, rely=.5, anchor="center")
+        self.master.aspect(1, 1, 1, 1)
 
         try:
             self.travel_log_txt = open("travel_log.txt", "r")
