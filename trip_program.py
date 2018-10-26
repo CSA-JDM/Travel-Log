@@ -51,8 +51,6 @@ class App(tk.Frame):
         self.widgets = dict()
         self.widget_init()
 
-        # self.window_update()
-
     def widget_init(self):
         self.widgets["menu"] = tk.Menu(self)
         self.widgets["file_menu"] = tk.Menu(self.widgets["menu"], tearoff=0)
@@ -145,24 +143,6 @@ class App(tk.Frame):
                  "user based on the survey and any information given in the description."
         )
         self.widgets["about_message"].pack()
-
-    def window_update(self):
-        # if [str(self.current_width), str(self.current_height)] != self.master.winfo_geometry().split("+")[0].split("x"):
-        #    width, height = [int(x) for x in self.master.winfo_geometry().split("+")[0].split("x")]
-        #    x_difference, y_difference = width - self.current_width, height - self.current_height
-        #    self.place(x=self.winfo_x() + x_difference, y=self.winfo_y() + y_difference)
-        #    self.current_width, self.current_height = width, height
-        # if self.winfo_geometry().split("+")[0] != self.master.winfo_geometry().split("+")[0]:
-        #     new_width, new_height = self.master.winfo_geometry().split("+")[0].split("x")
-        #     width, height = self.winfo_geometry().split("+")[0].split("x")
-        #     width_difference, height_difference = int(new_width) - int(width), int(new_height) - int(height)
-        #     self.config(width=new_width, height=new_height)
-        #     for widget in self.widgets.values():
-        #         if not isinstance(widget, tk.Menu) and not isinstance(widget, tk.StringVar) \
-        #                 and not isinstance(widget, tk.Scrollbar):
-        #             widget.place(x=widget.winfo_x() + width_difference, y=widget.winfo_y() + height_difference)
-        # self.after(1, self.window_update)
-        pass
 
 
 if __name__ == "__main__":
